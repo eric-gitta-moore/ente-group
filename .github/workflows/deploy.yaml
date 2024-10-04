@@ -31,16 +31,16 @@ jobs:
           registry-url: https://registry.npmjs.com/
 
       - name: Install dependencies
-        run: yarn
+        run: cd web && yarn
 
       - name: Build
-        run: yarn build
+        run: cd web && yarn build
         env:
           NEXT_PUBLIC_ENTE_ENDPOINT: https://ente.tianhaoltd.top/api
 
       - name: Deploy to Doc Repository
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: apps/photos/out
+          folder: web/apps/photos/out
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
