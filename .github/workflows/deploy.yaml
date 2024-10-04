@@ -31,7 +31,8 @@ jobs:
           registry-url: https://registry.npmjs.com/
 
       - name: Patch Next.js basePath
-        run: sed -i.bak 's#output: "export",#basePath: process.env.NEXT_PUBLIC_BASE_PATH,output: "export",#i' web/packages/base/next.config.base.js
+        run: |
+          sed -i.bak 's#output: "export",#basePath: process.env.NEXT_PUBLIC_BASE_PATH,output: "export",#i' web/packages/base/next.config.base.js
 
       - name: Install dependencies
         run: cd web && yarn
