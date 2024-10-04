@@ -43,6 +43,10 @@ jobs:
           NEXT_PUBLIC_ENTE_ENDPOINT: https://ente.tianhaoltd.top/api
           NEXT_PUBLIC_BASE_PATH: /ente-group
 
+      - name: Bypass Jekyll
+        run: |
+          touch web/apps/photos/out/.nojekyll
+
       - name: Deploy to Doc Repository
         uses: JamesIves/github-pages-deploy-action@v4
         with:
