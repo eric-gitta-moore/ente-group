@@ -38,7 +38,7 @@ jobs:
       - name: Build
         run: yarn build
         env:
-          - NEXT_PUBLIC_ENTE_ENDPOINT: /api
+          - NEXT_PUBLIC_ENTE_ENDPOINT: https://ente.tianhaoltd.top/api
 
       - name: Deploy to Doc Repository
         uses: JamesIves/github-pages-deploy-action@v4
