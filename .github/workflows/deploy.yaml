@@ -23,14 +23,12 @@ jobs:
         with:
           repository: ente-io/ente
           submodules: true
-          path: web
 
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 20
           registry-url: https://registry.npmjs.com/
-          cache: 'yarn'
 
       - name: Install dependencies
         run: yarn
