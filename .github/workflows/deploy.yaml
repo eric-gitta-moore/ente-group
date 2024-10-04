@@ -1,0 +1,48 @@
+name: Deploy Preview
+
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: deploy-site-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: ente-io/ente
+          submodules: true
+          path: web
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.com/
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build
+        run: yarn build
+        env:
+          - NEXT_PUBLIC_ENTE_ENDPOINT: /api
+
+      - name: Deploy to Doc Repository
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist/preview
+          git-config-name: github-actions[bot]
+          git-config-email: github-actions[bot]@users.noreply.github.com
