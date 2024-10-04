@@ -43,6 +43,6 @@ jobs:
       - name: Deploy to Doc Repository
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist/preview
+          folder: apps/photos/out
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
